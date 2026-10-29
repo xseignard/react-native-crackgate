@@ -1,5 +1,6 @@
 import { StyleSheet, View } from 'react-native';
 import type { ViewProps } from 'react-native';
+import { BlackFlash } from './BlackFlash';
 
 export type CrackgateProps = {
   /** Whether the damage is visible. @default true */
@@ -12,6 +13,8 @@ export type CrackgateProps = {
   thickness?: number;
   /** Edge reached by the horizontal damaged pixels. @default 'right' */
   direction?: 'left' | 'right';
+  /** Brief blackouts beside the crack; respects Reduce Motion. @default false */
+  flash?: boolean;
   testID?: string;
 };
 
@@ -50,6 +53,7 @@ export function Crackgate({
   intensity = 1,
   thickness = 1,
   direction = 'right',
+  flash = false,
   testID,
 }: CrackgateProps) {
   const opacity = clamp(intensity, 0, 1, 1);
@@ -75,6 +79,7 @@ export function Crackgate({
       importantForAccessibility="no-hide-descendants"
       style={[styles.overlay, { opacity }]}
     >
+      {flash && <BlackFlash side={horizontal} />}
       <View
         style={[
           styles.line,

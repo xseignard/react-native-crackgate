@@ -3,7 +3,8 @@
 A fullscreen cracked-display effect for React Native, inspired by **#crackgate**: a dark vertical seam,
 a pin-sized junction, pink/white/green horizontal pixel lines, and a pale yellow
 line running to the bottom edge. Built with React Native views, with no additional
-runtime dependencies, images, native modules, or animation loops.
+runtime dependencies, images, or native modules. Optional black flashes reproduce
+the brief panel dropouts in [Expo’s video](https://x.com/expo/status/2115420818591097162).
 
 ## iOS example
 
@@ -17,6 +18,12 @@ content scrolls underneath it. The blue gear is Expo Go’s developer menu.
   <img src="docs/screenshots/ios-custom.png" width="240" alt="Thicker left-facing crack with the junction moved" />
 </p>
 
+### Black flash
+
+The same fullscreen demo with `flash: true`, captured on the iOS simulator:
+
+<img src="docs/screenshots/ios-black-flash.gif" width="260" alt="The right panel briefly dims and goes black while the crack lines remain visible" />
+
 ## Usage
 
 ```tsx
@@ -24,7 +31,7 @@ import { CrackgateView } from 'react-native-crackgate';
 
 export default function App() {
   return (
-    <CrackgateView style={{ flex: 1 }}>
+    <CrackgateView style={{ flex: 1 }} effect={{ flash: true }}>
       <YourApp />
     </CrackgateView>
   );
@@ -65,6 +72,11 @@ the same options as `Crackgate`:
 - `intensity` (default `1`): overall opacity, clamped to 0–1; zero renders nothing.
 - `thickness` (default `1`): line and junction scale, clamped to 0.25–4.
 - `direction` (default `'right'`): horizontal streaks extend to the left or right edge.
+- `flash` (default `false`): briefly dims/blacks out the side selected by
+  `direction`, from the seam to the screen edge, while leaving the colored lines
+  visible. A short burst repeats every 3.6 seconds. Uses the native animation
+  driver on iOS/Android, pauses in the background, and stays off with Reduce Motion
+  enabled. Turning off the crack or setting intensity to zero also stops flashes.
 - `testID`: optional identifier for the overlay.
 
 Non-finite numeric values fall back to their defaults. Coordinates are physical
@@ -77,7 +89,7 @@ it does not impose `flex: 1`.
 
 Scaffolded with [Bob](https://oss.callstack.com/react-native-builder-bob/create),
 using TypeScript and an Expo example for iOS, Android, and web. The example lets
-you enable/disable the effect, move the junction, change thickness, mirror the
+you enable/disable the effect and black flashes, move the junction, change thickness, mirror the
 horizontal streaks, and tap through the damage.
 
 ```sh

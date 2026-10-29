@@ -12,6 +12,7 @@ import { CrackgateView } from 'react-native-crackgate';
 
 export default function App() {
   const [enabled, setEnabled] = useState(true);
+  const [flash, setFlash] = useState(true);
   const [direction, setDirection] = useState<'left' | 'right'>('right');
   const [thickness, setThickness] = useState(1);
   const [origin, setOrigin] = useState({ x: 0.48, y: 0.6 });
@@ -22,6 +23,7 @@ export default function App() {
       style={styles.root}
       effect={{
         enabled,
+        flash,
         direction,
         thickness,
         origin,
@@ -66,6 +68,19 @@ export default function App() {
               accessibilityLabel="Crack the screen"
               value={enabled}
               onValueChange={setEnabled}
+              trackColor={{ false: '#414347', true: '#c6f17c' }}
+              thumbColor="#ffffff"
+            />
+          </View>
+          <View style={styles.row}>
+            <View>
+              <Text style={styles.label}>Black flashes</Text>
+              <Text style={styles.hint}>A little display malfunction.</Text>
+            </View>
+            <Switch
+              accessibilityLabel="Black flashes"
+              value={flash}
+              onValueChange={setFlash}
               trackColor={{ false: '#414347', true: '#c6f17c' }}
               thumbColor="#ffffff"
             />
