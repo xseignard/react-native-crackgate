@@ -3,8 +3,8 @@
 A fullscreen cracked-display effect for React Native, inspired by **#crackgate**: a dark vertical seam,
 a pin-sized junction, pink/white/green horizontal pixel lines, and a pale yellow
 line running to the bottom edge. Built with React Native views, with no additional
-runtime dependencies, images, or native modules. Optional black flashes reproduce
-the brief panel dropouts in [Expo’s video](https://x.com/expo/status/2115420818591097162).
+runtime dependencies, images, or native modules. Optional full-width black flashes are inspired by
+the brief dropouts in [Expo’s video](https://x.com/expo/status/2115420818591097162).
 
 ## iOS example
 
@@ -22,7 +22,7 @@ content scrolls underneath it. The blue gear is Expo Go’s developer menu.
 
 The same fullscreen demo with `flash: true`, captured on the iOS simulator:
 
-<img src="docs/screenshots/ios-black-flash.gif" width="260" alt="The right panel briefly dims and goes black while the crack lines remain visible" />
+<img src="docs/screenshots/ios-black-flash.gif" width="260" alt="The entire screen briefly dims and goes black while the crack lines remain visible" />
 
 ## Usage
 
@@ -72,9 +72,9 @@ the same options as `Crackgate`:
 - `intensity` (default `1`): overall opacity, clamped to 0–1; zero renders nothing.
 - `thickness` (default `1`): line and junction scale, clamped to 0.25–4.
 - `direction` (default `'right'`): horizontal streaks extend to the left or right edge.
-- `flash` (default `false`): briefly dims/blacks out the side selected by
-  `direction`, from the seam to the screen edge, while leaving the colored lines
-  visible. A short burst repeats every 3.6 seconds. Uses the native animation
+- `flash` (default `false`): briefly dims/blacks out the entire container,
+  independently of the crack’s `direction` or `origin`, while leaving the colored
+  lines visible. A short burst repeats every 3.6 seconds. Uses the native animation
   driver on iOS/Android, pauses in the background, and stays off with Reduce Motion
   enabled. Turning off the crack or setting intensity to zero also stops flashes.
 - `testID`: optional identifier for the overlay.

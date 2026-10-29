@@ -7,10 +7,9 @@ import {
   Platform,
   StyleSheet,
 } from 'react-native';
-import type { ViewStyle } from 'react-native';
 
-/** A short panel dropout followed by a longer pause, inspired by the reference clip. */
-export function BlackFlash({ side }: { side: ViewStyle }) {
+/** A short fullscreen dropout followed by a longer pause, inspired by the reference clip. */
+export function BlackFlash() {
   const progress = useRef(new Animated.Value(0)).current;
   // Wait for the system preference before starting any flashes.
   const [reduceMotion, setReduceMotion] = useState(true);
@@ -68,7 +67,6 @@ export function BlackFlash({ side }: { side: ViewStyle }) {
       pointerEvents="none"
       style={[
         styles.panel,
-        side,
         {
           opacity: progress.interpolate({
             // Abrupt dim / black / dim pulses, with clear gaps and a long rest.
@@ -89,6 +87,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 0,
     bottom: 0,
+    left: 0,
+    right: 0,
     backgroundColor: '#000000',
   },
 });

@@ -13,7 +13,7 @@ export type CrackgateProps = {
   thickness?: number;
   /** Edge reached by the horizontal damaged pixels. @default 'right' */
   direction?: 'left' | 'right';
-  /** Brief blackouts beside the crack; respects Reduce Motion. @default false */
+  /** Brief full-width blackouts; respects Reduce Motion. @default false */
   flash?: boolean;
   testID?: string;
 };
@@ -79,7 +79,7 @@ export function Crackgate({
       importantForAccessibility="no-hide-descendants"
       style={[styles.overlay, { opacity }]}
     >
-      {flash && <BlackFlash side={horizontal} />}
+      {flash && <BlackFlash />}
       <View
         style={[
           styles.line,

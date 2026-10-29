@@ -46,13 +46,14 @@ so JavaScript changes refresh without a native rebuild.
 
 ## Black flash verification
 
-The updated Expo example was tested on the same simulator. The tap counter
-advanced with flashes both enabled and disabled. Frame analysis of a 26-second
-iOS recording confirmed right-panel blackouts repeating every 3.6 seconds while
-the left panel stayed unchanged. A 43-second recording with “Black flashes” off
-contained no blackouts. Selecting “← Left” mirrored the blackout: frame analysis
-confirmed that only the left panel flashed. The colored crack lines remain visible during the black
-frames. `screenshots/ios-black-flash.gif` is extracted from the simulator recording.
+The full-width flash was verified on the same simulator. Frame analysis sampled
+both the left and right screen edges: both reached black on exactly the same
+frames. The colored crack lines remain visible over the blackout. The flash
+covers the whole container independently of crack direction and position.
+`screenshots/ios-black-flash.gif` is extracted from this updated simulator recording.
+
+Earlier checks also confirmed the tap counter advances with flashes enabled and
+disabled, and a 43-second recording with “Black flashes” off contained no blackouts.
 
 TypeScript, ESLint, Bob's module/declaration build, and the web export passed.
 Reduce Motion and background cleanup are implemented through React Native's
